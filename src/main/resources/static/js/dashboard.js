@@ -6,29 +6,40 @@
   feather.replace()
 
   // Graphs
-    const ctx = document.getElementById('myChart');
-    // eslint-disable-next-line no-unused-vars
+  const ctx = document.getElementById('myChart');
+
+  // eslint-disable-next-line no-unused-vars
   const myChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
+        'Jan',
+        'Feb',
+        'Mär',
+        'Apr',
+        'Mai',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Okt',
+        'Nov',
+        'Dez'
       ],
       datasets: [{
         data: [
-          15339,
-          21345,
-          18483,
-          24003,
-          23489,
-          24092,
-          12034
+          70,
+          20,
+          0,
+          30,
+          23,
+          18,
+          50,
+          33,
+          65,
+          18,
+          32,
+          57
         ],
         lineTension: 0,
         backgroundColor: 'transparent',
@@ -41,7 +52,7 @@
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: false
+            beginAtZero: true
           }
         }]
       },
@@ -50,4 +61,15 @@
       }
     }
   });
+
+  const monat = document.getElementById('monat').valueOf();
+
+  const getDaysInMonth = function (month, year) {
+    return new Date(year, month, 0).getDate();
+  };
+  if (monat !== 13) {
+    const monatTage = getDaysInMonth(monat, 2020)
+  }
+
+
 }())

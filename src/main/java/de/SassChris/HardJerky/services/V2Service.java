@@ -36,4 +36,8 @@ public class V2Service {
     public Optional<Verarbeitung_2> getById(long id) {
         return repository.findById(id);
     }
+
+    public Verarbeitung_2 last() {
+        return repository.findTopByOrderByIdDesc();
+    }
 }

@@ -1,6 +1,7 @@
 package de.SassChris.HardJerky.controllers;
 
 import de.SassChris.HardJerky.entities.Einkauf;
+import de.SassChris.HardJerky.logics.EinkaufLogic;
 import de.SassChris.HardJerky.services.EinkaufService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,6 @@ public class EinkaufController {
     @RequestMapping("/Einkauf/Neu")
     public String einkaufNeu(Model model){
         Einkauf einkauf = new Einkauf();
-        einkauf.setCharge(einkauf.getId());
         model.addAttribute("einkauf", einkauf);
         return "Einkauf/Einkauf_Neu";
     }
@@ -42,6 +42,7 @@ public class EinkaufController {
     @RequestMapping(value = "/Einkauf/Save", method = RequestMethod.POST)
     public String saveEinkauf(@ModelAttribute("einkauf") Einkauf einkauf) {
         einkaufService.save(einkauf);
+        new EinkaufLogic(einkaufService);
         return "redirect:/Einkauf";
     }
 

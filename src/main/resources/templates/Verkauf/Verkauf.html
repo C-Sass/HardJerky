@@ -79,6 +79,12 @@
                             Verkauf
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Controlling">
+                            <span data-feather="bar-chart-2"></span>
+                            Controlling
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -90,8 +96,6 @@
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Charge</th>
                         <th>Datum</th>
                         <th>Kunde</th>
                         <th>Packs</th>
@@ -101,8 +105,6 @@
                     </thead>
                     <tbody>
                     <tr th:each="verkauf : ${verkaufList}">
-                        <td th:text="${verkauf.id}">Einkauf ID</td>
-                        <td th:text="${verkauf.charge}">Kaufdatum</td>
                         <td th:text="${verkauf.kaufDatum}">Charge Nr.</td>
                         <td th:text="${verkauf.kunde}">Menge</td>
                         <td th:text="${verkauf.packs}">Preis pro Kg</td>

@@ -24,7 +24,6 @@ public class Verkauf {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private long charge;
     private Date kaufDatum;
     private String kunde;
     private int packs;

@@ -1,7 +1,8 @@
 package de.SassChris.HardJerky.controllers;
 
-import de.SassChris.HardJerky.UtilityMethods;
 import de.SassChris.HardJerky.entities.Verarbeitung_1;
+import de.SassChris.HardJerky.logics.UtilityMethods;
+import de.SassChris.HardJerky.services.EinkaufService;
 import de.SassChris.HardJerky.services.V1Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import java.util.Optional;
 public class V1Controller {
 
     private final V1Service v1Service;
+    private final EinkaufService einkaufService;
 
     @RequestMapping("/V1")
     public String v1(Model model){
@@ -41,7 +43,9 @@ public class V1Controller {
 
     @RequestMapping(value = "/V1/Save", method = RequestMethod.POST)
     public String saveV1(@ModelAttribute("v1") Verarbeitung_1 v1) {
-        v1.setCharge(UtilityMethods.currentCharge());
+        if (v1.getCharge() == null) {
+            v1.setCharge(new UtilityMethods(einkaufService).currentCharge());
+        }
         v1Service.save(v1);
         return "redirect:/V1";
     }

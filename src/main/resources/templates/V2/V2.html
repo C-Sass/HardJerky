@@ -79,6 +79,12 @@
                             Verkauf
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Controlling">
+                            <span data-feather="bar-chart-2"></span>
+                            Controlling
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -90,7 +96,6 @@
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Charge</th>
                         <th>Marinade</th>
                         <th>Trocken</th>
@@ -99,7 +104,6 @@
                     </thead>
                     <tbody>
                     <tr th:each="v2 : ${v2List}">
-                        <td th:text="${v2.id}">Einkauf ID</td>
                         <td th:text="${v2.charge}">Kaufdatum</td>
                         <td th:text="${v2.marinade}">Charge Nr.</td>
                         <td th:text="${v2.trocken}">Menge</td>

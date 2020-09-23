@@ -86,10 +86,13 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <h2>Ein neuer Eintrag</h2>
             <form action="#" th:action="@{/V2/Save}" th:object="${v2}" method="post">
-                <div class="form-group">
-                    <label for="marinade">Marinade</label>
-                    <input type="text" class="form-control" id="marinade" placeholder="Welche Marinade?"
-                           th:field="*{marinade}">
+                <div class="dropdown">
+                    <label for="marinadeListe">
+                        <select id="marinadeListe" th:field="*{marinade}">
+                            <option th:each="marinade : ${marinadeListe}" th:text="${marinade}"
+                                    th:value="${marinade}"></option>
+                        </select>
+                    </label>
                 </div>
                 <div class="form-group">
                     <label for="trocken">Trocken</label>

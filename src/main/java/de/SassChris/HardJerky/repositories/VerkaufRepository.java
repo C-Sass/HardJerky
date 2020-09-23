@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VerkaufRepository extends JpaRepository<Verkauf, Long> {
-
+    Verkauf findTopByOrderByIdDesc();
 }

@@ -19,8 +19,7 @@ public class Lager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private long charge;
     private String marinade;
-    private int anzahl;
+    private int packs;
     private double preis;
 }

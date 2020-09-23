@@ -44,5 +44,4 @@ public class EinkaufService {
     public Einkauf last() {
         return repository.findTopByOrderByIdDesc();
     }
-
 }

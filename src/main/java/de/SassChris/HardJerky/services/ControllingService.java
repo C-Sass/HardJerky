@@ -1,7 +1,7 @@
 package de.SassChris.HardJerky.services;
 
-import de.SassChris.HardJerky.entities.Verkauf;
-import de.SassChris.HardJerky.repositories.VerkaufRepository;
+import de.SassChris.HardJerky.entities.Controlling;
+import de.SassChris.HardJerky.repositories.ControllingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,34 +10,30 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Author: Chris Saß, Created on: 19.09.2020
+ * Author: Chris Saß, Created on: 22.09.2020
  */
 
 @Service
 @Transactional
-public class VerkaufService {
+public class ControllingService {
 
     @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
     @Autowired
-    private VerkaufRepository repository;
+    private ControllingRepository repository;
 
-    public List<Verkauf> listAll() {
+    public List<Controlling> listAll() {
         return repository.findAll();
     }
 
-    public void save(Verkauf verkauf) {
-        repository.save(verkauf);
+    public void save(Controlling controlling) {
+        repository.save(controlling);
     }
 
     public void deleteById(long id) {
         repository.deleteById(id);
     }
 
-    public Optional<Verkauf> getById(long id) {
+    public Optional<Controlling> getById(long id) {
         return repository.findById(id);
-    }
-
-    public Verkauf last() {
-        return repository.findTopByOrderByIdDesc();
     }
 }

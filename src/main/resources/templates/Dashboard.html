@@ -79,6 +79,12 @@
               Verkauf
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Controlling">
+              <span data-feather="bar-chart-2"></span>
+              Controlling
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -87,24 +93,12 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
         <div class="dropdown">
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" id="dropdownMenuButton"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span> 2020
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a href="#" data-value="1 Januar">1 Januar</a></li>
-            <li><a href="#" data-value="2 Februar">2 Februar</a></li>
-            <li><a href="#" data-value="3 März">3 März</a></li>
-            <li><a href="#" data-value="4 April">4 April</a></li>
-            <li><a href="#" data-value="5 Mai">5 Mai</a></li>
-            <li><a href="#" data-value="6 Juni">6 Juni</a></li>
-            <li><a href="#" data-value="7 Juli">7 Juli</a></li>
-            <li><a href="#" data-value="8 August">8 August</a></li>
-            <li><a href="#" data-value="9 September">9 September</a></li>
-            <li><a href="#" data-value="10 Oktober">10 Oktober</a></li>
-            <li><a href="#" data-value="11 November">11 November</a></li>
-            <li><a href="#" data-value="12 Dezember">12 Dezember</a></li>
-          </ul>
+          <label for="monat">
+            <select id="monat" th:field="*{monat}">
+              <option th:each="i : ${#numbers.sequence(0, 12)}" th:text="${i}" th:value="${i}"></option>
+              <option selected th:text="2020" th:value="13"></option>
+            </select>
+          </label>
         </div>
       </div>
 

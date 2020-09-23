@@ -100,10 +100,13 @@
                     <input type="number" step="1" class="form-control" id="packs" placeholder="Anzahl"
                            th:field="*{packs}">
                 </div>
-                <div class="form-group">
-                    <label for="marinade">Pakete</label>
-                    <input type="text" class="form-control" id="marinade" placeholder="Welche Marinade?"
-                           th:field="*{marinade}">
+                <div class="dropdown">
+                    <label for="marinadeListe">
+                        <select id="marinadeListe" th:field="*{marinade}">
+                            <option th:each="marinade : ${marinadeListe}" th:text="${marinade}"
+                                    th:value="${marinade}"></option>
+                        </select>
+                    </label>
                 </div>
                 <div class="form-group">
                     <label for="einnahmen">Preis</label>

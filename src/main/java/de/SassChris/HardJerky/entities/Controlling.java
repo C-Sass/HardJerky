@@ -14,16 +14,18 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
-@ToString @EqualsAndHashCode
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class Controlling {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long charge;
 
     //Einkauf & V1
-    private Long charge;
     private double gekauft;
     private double verschnitt;
     private double verschnittRate;

@@ -1,6 +1,9 @@
 package de.SassChris.HardJerky.controllers;
 
 import de.SassChris.HardJerky.entities.Verkauf;
+import de.SassChris.HardJerky.logics.LagerLogic;
+import de.SassChris.HardJerky.logics.UtilityMethods;
+import de.SassChris.HardJerky.services.LagerService;
 import de.SassChris.HardJerky.services.VerkaufService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,7 @@ import java.util.Optional;
 public class VerkaufController {
 
     private final VerkaufService verkaufService;
+    private final LagerService lagerService;
 
     @RequestMapping("/Verkauf")
     public String verkauf(Model model){
@@ -35,12 +39,14 @@ public class VerkaufController {
     public String verkaufNeu(Model model){
         Verkauf verkauf = new Verkauf();
         model.addAttribute("verkauf", verkauf);
+        model.addAttribute("marinadeListe", UtilityMethods.marinadeListe());
         return "Verkauf/Verkauf_Neu";
     }
 
     @RequestMapping(value = "/Verkauf/Save", method = RequestMethod.POST)
     public String saveVerkauf(@ModelAttribute("verkauf") Verkauf verkauf) {
         verkaufService.save(verkauf);
+        new LagerLogic(lagerService).remove(verkaufService.last());
         return "redirect:/Verkauf";
     }
 
@@ -49,6 +55,7 @@ public class VerkaufController {
         ModelAndView modelAndView = new ModelAndView("Verkauf/Verkauf_Edit");
         Optional<Verkauf> verkauf = verkaufService.getById(id);
         modelAndView.addObject("verkauf", verkauf);
+        modelAndView.addObject("marinadeListe", UtilityMethods.marinadeListe());
         return modelAndView;
     }
 

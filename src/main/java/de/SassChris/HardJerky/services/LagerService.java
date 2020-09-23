@@ -36,4 +36,12 @@ public class LagerService {
     public Optional<Lager> getById(long id) {
         return repository.findById(id);
     }
+
+    public Lager getByMarinade(String marinade) {
+        return repository.findByMarinade(marinade);
+    }
+
+    public Lager last() {
+        return repository.findTopByOrderByIdDesc();
+    }
 }

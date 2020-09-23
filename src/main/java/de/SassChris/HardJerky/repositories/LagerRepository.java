@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LagerRepository extends JpaRepository<Lager, Long> {
+
+    Lager findByMarinade(String marinade);
+
+    Lager findTopByOrderByIdDesc();
 }
