@@ -29,11 +29,11 @@ public class WebAppController {
     public String controlling(Model model) {
         int lastCharge = (int) einkaufService.last().getCharge();
         model.addAttribute("lastCharge", lastCharge);
+        return "Kontrolle/Controlling";
+    }
 
-        for (int i = 0; i <= lastCharge; i++) {
-            model.addAttribute("charge" + i, einkaufService);
-        }
-
-        return "Controlling";
+    @RequestMapping("/Kalkulation")
+    public String kalkulation(Model model) {
+        return "Kontrolle/Kalkulation";
     }
 }

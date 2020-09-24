@@ -23,6 +23,6 @@ public class LagerController {
     public String lager(Model model){
         List<Lager> lagerList = lagerService.listAll();
         model.addAttribute("lagerList", lagerList);
-        return "/Lager";
+        return "Kontrolle/Lager";
     }
 }

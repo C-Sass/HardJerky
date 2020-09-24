@@ -37,11 +37,11 @@ public class EinkaufService {
         return repository.findById(id);
     }
 
-    public Einkauf getByCharge(long charge){
-        return repository.findByCharge(charge);
-    }
-
     public Einkauf last() {
         return repository.findTopByOrderByIdDesc();
+    }
+
+    public long currentCharge() {
+        return last().getCharge();
     }
 }

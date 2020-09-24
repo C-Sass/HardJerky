@@ -2,7 +2,7 @@ package de.SassChris.HardJerky.controllers;
 
 import de.SassChris.HardJerky.entities.Verkauf;
 import de.SassChris.HardJerky.logics.LagerLogic;
-import de.SassChris.HardJerky.logics.UtilityMethods;
+import de.SassChris.HardJerky.logics.MarinadeLogic;
 import de.SassChris.HardJerky.services.LagerService;
 import de.SassChris.HardJerky.services.VerkaufService;
 import lombok.RequiredArgsConstructor;
@@ -32,15 +32,15 @@ public class VerkaufController {
     public String verkauf(Model model){
         List<Verkauf> verkaufList = verkaufService.listAll();
         model.addAttribute("verkaufList", verkaufList);
-        return "Verkauf/Verkauf";
+        return "Vertriebskette/Verkauf/Verkauf";
     }
 
     @RequestMapping("/Verkauf/Neu")
-    public String verkaufNeu(Model model){
+    public String verkaufNeu(Model model) {
         Verkauf verkauf = new Verkauf();
         model.addAttribute("verkauf", verkauf);
-        model.addAttribute("marinadeListe", UtilityMethods.marinadeListe());
-        return "Verkauf/Verkauf_Neu";
+        model.addAttribute("marinadeListe", MarinadeLogic.marinadeListe());
+        return "Vertriebskette/Verkauf/Verkauf_Neu";
     }
 
     @RequestMapping(value = "/Verkauf/Save", method = RequestMethod.POST)
@@ -52,10 +52,10 @@ public class VerkaufController {
 
     @RequestMapping("/Verkauf/Edit{id}")
     public ModelAndView edit(@PathVariable(name = "id") long id){
-        ModelAndView modelAndView = new ModelAndView("Verkauf/Verkauf_Edit");
+        ModelAndView modelAndView = new ModelAndView("Vertriebskette/Verkauf/Verkauf_Edit");
         Optional<Verkauf> verkauf = verkaufService.getById(id);
         modelAndView.addObject("verkauf", verkauf);
-        modelAndView.addObject("marinadeListe", UtilityMethods.marinadeListe());
+        modelAndView.addObject("marinadeListe", MarinadeLogic.marinadeListe());
         return modelAndView;
     }
 

@@ -29,14 +29,14 @@ public class EinkaufController {
     public String einkauf(Model model){
         List<Einkauf> einkaufList = einkaufService.listAll();
         model.addAttribute("einkaufList", einkaufList);
-        return "Einkauf/Einkauf";
+        return "Vertriebskette/Einkauf/Einkauf";
     }
 
     @RequestMapping("/Einkauf/Neu")
     public String einkaufNeu(Model model){
         Einkauf einkauf = new Einkauf();
         model.addAttribute("einkauf", einkauf);
-        return "Einkauf/Einkauf_Neu";
+        return "Vertriebskette/Einkauf/Einkauf_Neu";
     }
 
     @RequestMapping(value = "/Einkauf/Save", method = RequestMethod.POST)
@@ -48,7 +48,7 @@ public class EinkaufController {
 
     @RequestMapping("/Einkauf/Edit{id}")
     public ModelAndView edit(@PathVariable(name = "id") long id){
-        ModelAndView modelAndView = new ModelAndView("Einkauf/Einkauf_Edit");
+        ModelAndView modelAndView = new ModelAndView("Vertriebskette/Einkauf/Einkauf_Edit");
         Optional<Einkauf> einkauf = einkaufService.getById(id);
         modelAndView.addObject("einkauf", einkauf);
         return modelAndView;

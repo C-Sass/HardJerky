@@ -1,7 +1,6 @@
 package de.SassChris.HardJerky.controllers;
 
 import de.SassChris.HardJerky.entities.Verarbeitung_1;
-import de.SassChris.HardJerky.logics.UtilityMethods;
 import de.SassChris.HardJerky.services.EinkaufService;
 import de.SassChris.HardJerky.services.V1Service;
 import lombok.RequiredArgsConstructor;
@@ -31,20 +30,20 @@ public class V1Controller {
     public String v1(Model model){
         List<Verarbeitung_1> verarbeitung1List = v1Service.listAll();
         model.addAttribute("v1List", verarbeitung1List);
-        return "V1/V1";
+        return "Vertriebskette/V1/V1";
     }
 
     @RequestMapping("/V1/Neu")
     public String v1Neu(Model model){
         Verarbeitung_1 v1 = new Verarbeitung_1();
         model.addAttribute("v1", v1);
-        return "V1/V1_Neu";
+        return "Vertriebskette/V1/V1_Neu";
     }
 
     @RequestMapping(value = "/V1/Save", method = RequestMethod.POST)
     public String saveV1(@ModelAttribute("v1") Verarbeitung_1 v1) {
         if (v1.getCharge() == null) {
-            v1.setCharge(new UtilityMethods(einkaufService).currentCharge());
+            v1.setCharge(einkaufService.currentCharge());
         }
         v1Service.save(v1);
         return "redirect:/V1";
@@ -52,7 +51,7 @@ public class V1Controller {
 
     @RequestMapping("/V1/Edit{id}")
     public ModelAndView edit(@PathVariable(name = "id") long id){
-        ModelAndView modelAndView = new ModelAndView("V1/V1_Edit");
+        ModelAndView modelAndView = new ModelAndView("Vertriebskette/V1/V1_Edit");
         Optional<Verarbeitung_1> v1 = v1Service.getById(id);
         modelAndView.addObject("v1", v1);
         return modelAndView;
