@@ -1,6 +1,5 @@
 package de.SassChris.HardJerky.controllers;
 
-import de.SassChris.HardJerky.services.EinkaufService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,24 +15,10 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class WebAppController {
 
-    private final EinkaufService einkaufService;
-
     @RequestMapping({"/", "/Dashboard"})
     public String dashboard(Model model) {
         int monat = LocalDate.now().getMonthValue();
         model.addAttribute("monat", monat);
         return "Dashboard";
-    }
-
-    @RequestMapping("/Controlling")
-    public String controlling(Model model) {
-        int lastCharge = (int) einkaufService.last().getCharge();
-        model.addAttribute("lastCharge", lastCharge);
-        return "Kontrolle/Controlling";
-    }
-
-    @RequestMapping("/Kalkulation")
-    public String kalkulation(Model model) {
-        return "Kontrolle/Kalkulation";
     }
 }

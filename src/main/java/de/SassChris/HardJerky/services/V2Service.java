@@ -40,4 +40,8 @@ public class V2Service {
     public Verarbeitung_2 last() {
         return repository.findTopByOrderByIdDesc();
     }
+
+    public List<Verarbeitung_2> getByCharge(Long charge) {
+        return repository.findAllByCharge(charge);
+    }
 }

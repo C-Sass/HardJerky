@@ -36,4 +36,8 @@ public class V1Service {
     public Optional<Verarbeitung_1> getById(long id) {
         return repository.findById(id);
     }
+
+    public List<Verarbeitung_1> getByCharge(Long charge) {
+        return repository.findAllByCharge(charge);
+    }
 }

@@ -18,22 +18,15 @@
         <nav th:replace="Fragmente/Sidebar :: sidebar"></nav>
 
         <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4" role="main">
-            <h2>Eintrag bearbeiten</h2>
-            <form action="#" method="post" th:action="@{/V1/Save}" th:object="${v1}">
-                <div class="form-group">
-                    <label for="gekauft">Gekauft</label>
-                    <input class="form-control" id="gekauft" step="0.001" th:field="*{gekauft}"
-                           type="number">
-                </div>
-                <div class="form-group">
-                    <label for="verschnitt">Verschnitt</label>
-                    <input class="form-control" id="verschnitt" step="0.001" th:field="*{verschnitt}"
-                           type="number">
-                </div>
-                <div class="form-group">
-                    <label for="bereit">Bereit</label>
-                    <input class="form-control" id="bereit" step="0.01" th:field="*{bereit}"
-                           type="number">
+            <h2>Eine andere Charge</h2>
+            <form action="#" method="post" th:action="@{/Controlling/Save}" th:object="controlling">
+                <div class="dropdown">
+                    <label for="charge"> Charge auswählen
+                        <select id="charge" th:field="*{charge}">
+                            <option th:each="i : ${#numbers.sequence(0, ${lastCharge})}" th:text="${i}" th:value="${i}">
+                            </option>
+                        </select>
+                    </label>
                 </div>
                 <button class="btn btn-primary" type="submit">Submit</button>
             </form>

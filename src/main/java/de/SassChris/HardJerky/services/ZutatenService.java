@@ -37,8 +37,8 @@ public class ZutatenService {
         repository.deleteById(id);
     }
 
-    public Zutaten find(String zutat) {
-        return repository.findByZutat(zutat);
+    public Zutaten find(String zutatName) {
+        return repository.findByZutatName(zutatName);
     }
 
 }

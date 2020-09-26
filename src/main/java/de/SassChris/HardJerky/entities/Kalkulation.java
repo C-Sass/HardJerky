@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Author: Chris Saß, Created on: 24.09.2020
+ * Author: Chris Saß, Created on: 26.09.2020
  */
 
 @Entity
@@ -18,13 +18,12 @@ import javax.persistence.Id;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Zutaten {
+public class Kalkulation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String zutatName;
-    private int menge;
     private double preis;
-    private double preisNormiert;
+    private double menge;
+    private String marinade;
 }

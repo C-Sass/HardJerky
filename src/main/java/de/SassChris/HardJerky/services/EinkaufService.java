@@ -44,4 +44,8 @@ public class EinkaufService {
     public long currentCharge() {
         return last().getCharge();
     }
+
+    public Einkauf getByCharge(Long charge) {
+        return repository.findByCharge(charge);
+    }
 }

@@ -9,4 +9,5 @@ public interface EinkaufRepository extends JpaRepository<Einkauf, Long> {
 
     Einkauf findTopByOrderByIdDesc();
 
+    Einkauf findByCharge(Long charge);
 }

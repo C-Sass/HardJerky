@@ -35,9 +35,14 @@ public class Controlling {
     private String marinade;
     private double trocken;
     private double trockenRate;
+    private int packs;
 
     //Kalkulation
     private double kosten;
+    private int ladungen;
+    private double mengeLadung;
+
+    //Controlling
     private double einnahmen;
     private double marge;
     private double margeRate;

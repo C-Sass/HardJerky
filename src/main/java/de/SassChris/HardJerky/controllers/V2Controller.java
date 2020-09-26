@@ -1,18 +1,14 @@
 package de.SassChris.HardJerky.controllers;
 
 import de.SassChris.HardJerky.entities.Verarbeitung_2;
+import de.SassChris.HardJerky.logics.ControllingLogic;
 import de.SassChris.HardJerky.logics.LagerLogic;
 import de.SassChris.HardJerky.logics.MarinadeLogic;
-import de.SassChris.HardJerky.services.EinkaufService;
-import de.SassChris.HardJerky.services.LagerService;
-import de.SassChris.HardJerky.services.V2Service;
+import de.SassChris.HardJerky.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -29,6 +25,10 @@ public class V2Controller {
     private final V2Service v2Service;
     private final LagerService lagerService;
     private final EinkaufService einkaufService;
+    private final ControllingService controllingService;
+    private final V1Service v1Service;
+    private final KalkulationService kalkulationService;
+    private final MarinadeService marinadeService;
 
     @RequestMapping("/V2")
     public String v2(Model model) {
@@ -46,12 +46,20 @@ public class V2Controller {
     }
 
     @RequestMapping(value = "/V2/Save", method = RequestMethod.POST)
-    public String saveV2(@ModelAttribute("v2") Verarbeitung_2 v2) {
+    public String saveV2(@ModelAttribute("v2") Verarbeitung_2 v2,
+                         @RequestParam(value = "fertig", required = false) String fertig) {
         if (v2.getCharge() == null) {
             v2.setCharge(einkaufService.currentCharge());
         }
         v2Service.save(v2);
         new LagerLogic(lagerService).add(v2Service.last());
+
+        //Letzter Durchgang
+        if (fertig != null) {
+            new ControllingLogic(controllingService, einkaufService, v1Service, v2Service,
+                    kalkulationService, marinadeService, lagerService).run(v2.getCharge());
+        }
+
         return "redirect:/V2";
     }
 

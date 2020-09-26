@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ControllingRepository extends JpaRepository<Controlling, Long> {
 
+    Controlling findByCharge(long charge);
+
 }

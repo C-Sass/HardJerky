@@ -36,4 +36,8 @@ public class ControllingService {
     public Optional<Controlling> getById(long id) {
         return repository.findById(id);
     }
+
+    public Controlling getByCharge(long charge) {
+        return repository.findByCharge(charge);
+    }
 }

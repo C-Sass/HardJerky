@@ -31,7 +31,7 @@ public class LagerLogic {
         long id;
         String marinade = v2.getMarinade();
         int packs;
-        double preis = 7.0; //TODO LagerLogic(Preis)
+        double preis = 0.0; //in Controlling geändert
 
         if (lagerService.last() == null) {
             id = 0;

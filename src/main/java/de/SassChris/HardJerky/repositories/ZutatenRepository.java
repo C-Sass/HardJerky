@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ZutatenRepository extends JpaRepository<Zutaten, Long> {
 
-    Zutaten findByZutat(String zutat);
+    Zutaten findByZutatName(String zutatName);
 }

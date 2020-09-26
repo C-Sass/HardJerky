@@ -1,7 +1,9 @@
 package de.SassChris.HardJerky.controllers;
 
 import de.SassChris.HardJerky.entities.Zutaten;
+import de.SassChris.HardJerky.logics.MarinadeLogic;
 import de.SassChris.HardJerky.logics.ZutatenLogic;
+import de.SassChris.HardJerky.services.MarinadeService;
 import de.SassChris.HardJerky.services.ZutatenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,14 @@ import java.util.Optional;
 public class ZutatenController {
 
     private final ZutatenService zutatenService;
+    private final MarinadeService marinadeService;
+
+    @RequestMapping("/Marinade")
+    public String marinade(Model model) {
+        new MarinadeLogic(zutatenService, marinadeService).berechneKosten();
+        model.addAttribute("marinadeList", marinadeService.marinadeList());
+        return "Marinaden/Marinade/Marinade";
+    }
 
     @RequestMapping("/Zutaten")
     public String zutatenListe(Model model) {
@@ -33,13 +43,13 @@ public class ZutatenController {
     @RequestMapping("/Zutaten/Neu")
     public String neu(Model model) {
         Zutaten zutaten = new Zutaten();
-        model.addAttribute("zutat", zutaten);
+        model.addAttribute("zutaten", zutaten);
         return "Marinaden/Zutaten/Zutaten_Neu";
     }
 
     @RequestMapping(value = "/Zutaten/Save", method = RequestMethod.POST)
-    public String save(@ModelAttribute("zutat") Zutaten zutaten) {
-        zutatenService.save(zutaten);
+    public String save(@ModelAttribute("zutaten") Zutaten zutat) {
+        zutatenService.save(zutat);
         new ZutatenLogic(zutatenService).calc();
         return "redirect:/Zutaten";
     }
@@ -48,7 +58,7 @@ public class ZutatenController {
     public ModelAndView edit(@PathVariable(name = "id") long id) {
         ModelAndView modelAndView = new ModelAndView("Marinaden/Zutaten/Zutaten_Edit");
         Optional<Zutaten> zutaten = zutatenService.findById(id);
-        modelAndView.addObject("zutat", zutaten);
+        modelAndView.addObject("zutaten", zutaten);
         return modelAndView;
     }
 
