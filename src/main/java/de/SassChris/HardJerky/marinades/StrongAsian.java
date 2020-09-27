@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class StrongAsian {
 
-    public static Map<String, Integer> rezept = Stream.of(new Object[][]{
+    public static final Map<String, Integer> rezept = Stream.of(new Object[][]{
             {"Fleisch", 1500},
             {"Sojasauce", 250},
             {"Worcestersauce", 150},

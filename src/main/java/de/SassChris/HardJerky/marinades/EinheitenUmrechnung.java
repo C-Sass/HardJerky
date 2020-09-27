@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class EinheitenUmrechnung {
 
-    public static Map<String, Integer> measureToUnit = Stream.of(new Object[][]{
+    public static final Map<String, Integer> measureToUnit = Stream.of(new Object[][]{
             {"Salz", 8}, //1 TL
             {"Pfeffer, schwarz", 7}, //1 TL
             {"Rauchsalz", 3}, //1 Prise

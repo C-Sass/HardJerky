@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Author: Chris Saß, Created on: 19.09.2020
@@ -27,14 +26,6 @@ public class LagerService {
 
     public void save(Lager lager) {
         repository.save(lager);
-    }
-
-    public void deleteById(long id) {
-        repository.deleteById(id);
-    }
-
-    public Optional<Lager> getById(long id) {
-        return repository.findById(id);
     }
 
     public Lager getByMarinade(String marinade) {

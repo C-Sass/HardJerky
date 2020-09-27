@@ -61,12 +61,13 @@ public class ControllingLogic {
         for (Verarbeitung_1 v1 : list) {
             gekauft += v1.getGekauft();
             verschnitt += v1.getVerschnitt();
-            bereit = v1.getBereit();
+            bereit += v1.getBereit();
         }
 
         double verschnittPlus = mengeGekauft - gekauft;
         verschnitt += verschnittPlus;
 
+        verschnitt = Precision.round(verschnitt, 3);
         verschnittRate = Precision.round(((verschnitt / mengeGekauft) * 100), 2);
 
         controlling.setVerschnitt(verschnitt);
@@ -90,6 +91,7 @@ public class ControllingLogic {
 
         mengeLadung = controlling.getBereit() / list.size();
         trockenRate = Precision.round((trocken / controlling.getBereit()) * 100, 2);
+        trocken = Precision.round(trocken, 3);
 
         controlling.setMarinade(marinade);
         controlling.setTrocken(trocken);
@@ -107,6 +109,7 @@ public class ControllingLogic {
         double kostenLadung = kalkulationLogic.kostenLadung(controlling.getLadungen());
 
         kosten = KalkulationLogic.FAHRTKOSTEN + kostenFleisch + kostenMarinade + kostenLadung;
+        kosten = Precision.round(kosten, 2);
 
         controlling.setKosten(kosten);
     }
@@ -122,7 +125,10 @@ public class ControllingLogic {
         kosten = controlling.getKosten() + (controlling.getPacks() * KalkulationLogic.BEUTEL);
         einnahmen = controlling.getPacks() * vkPreis;
         marge = einnahmen - kosten;
+
         margeRate = Precision.round((marge / einnahmen), 2);
+        einnahmen = Precision.round(einnahmen, 2);
+        marge = Precision.round(marge, 2);
 
         controlling.setEinnahmen(einnahmen);
         controlling.setMarge(marge);
